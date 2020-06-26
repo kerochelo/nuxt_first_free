@@ -1,10 +1,11 @@
 FROM node:12.16.0-alpine
 
-ENV HOME="/app" \
-    LANG=C.UTF-8 \
-    TZ=Asia/Tokyo 
+ENV LANG=C.UTF-8 \
+    TZ=Asia/Tokyo
 
-WORKDIR ${HOME}
+WORKDIR /src
+
+ADD . /src
 
 RUN apk update && \
     apk upgrade && \
@@ -12,3 +13,5 @@ RUN apk update && \
     npm install -g @vue/cli
 
 ENV HOST 0.0.0.0
+
+CMD ["yarn", "dev"]
